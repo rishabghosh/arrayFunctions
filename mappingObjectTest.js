@@ -6,24 +6,40 @@ const add5 = function(number){
   return number+5;
 }
 
-{
-  sourceObj = {a:1};
-  expectedOutput = {a5 : 1};
-  assertEq( objKeyMap(add5, sourceObj), expectedOutput);
-}
-{
-  sourceObj = {a: 1, b: 2};
-  expectedOutput = {a5: 1, b5: 2};
-  assertEq( objKeyMap(add5, sourceObj), expectedOutput);
+/* ------ Generate Log ------- */
+
+const generateLog = function(input, expected, actual){
+  console.log("For input : ", input);
+  console.log("expected :\n", expected);
+  console.log("actual :\n", actual);
+  console.log("------------");
 }
 
-console.log("tests for objKeyMap passed");
+/* ------ Test objKeyMap ------- */
 
-{
-  sourceObj = {a:1};
-  expectedOutput = {a:6};
-  assertEq( objValueMap(add5, sourceObj), expectedOutput);
+const testObjKeyMap = function(internalFunc, sourceObj, expected){
+  let actual = objKeyMap(internalFunc, sourceObj);
+  generateLog({internalFunc,sourceObj}, expected, actual);
+  assertEq(actual, expected);
 }
 
-console.log("tests for objValueMap passed");
+{
+  testObjKeyMap(add5, {}, {});
+  testObjKeyMap(add5, {a:1 },{a5: 1});
+  testObjKeyMap(add5, {a:1, b:2}, {a5:1, b5:2});
+}
 
+
+/* -------- Test objValueMap ---------- */
+
+const testObjValueMap = function(internalFunc, sourceObj, expected){
+  let actual = objValueMap(internalFunc, sourceObj);
+  generateLog({internalFunc,sourceObj}, expected, actual);
+  assertEq(actual, expected);
+}
+
+{
+  testObjValueMap(add5, {}, {});
+  testObjValueMap(add5, {a:1 },{a: 6});
+  testObjValueMap(add5, {a:1, b:2}, {a:6, b:7});
+}
