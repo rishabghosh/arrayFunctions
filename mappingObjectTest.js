@@ -1,6 +1,6 @@
 const assertEq = require('assert').deepEqual;
 const {objKeyMap,
-  objValueMap} = require('./mappingObject.js');
+  objValueMap} = require('./mappingObjectLib.js');
 
 const add5 = function(number){
   return number+5;
