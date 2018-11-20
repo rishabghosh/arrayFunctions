@@ -6,5 +6,7 @@ const map = function(internalFunc, sourceArray){
   return result;
 }
 
-
+const reduce = function(sourceArray, internalFunc, initial){
+  
+}
 exports.map = map;

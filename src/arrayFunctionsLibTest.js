@@ -20,7 +20,7 @@ const cube = function(number){
 
 const generateLog = function(internalFunc, input, expected, actual){
   console.log("Mapping", input);
-  console.log("With", {internalFunc});
+  console.log("With", internalFunc);
   console.log("expected :\n", expected);
   console.log("actual :\n", actual);
   console.log("------------");
@@ -30,7 +30,7 @@ const generateLog = function(internalFunc, input, expected, actual){
 
 const testMap = function(internalFunc, input, expected){
   let actual = map(internalFunc, input);
-  generateLog(internalFunc, input, expected, actual);
+  generateLog({internalFunc}, input, expected, actual);
   assert.deepEqual(actual, expected);
 }
 
@@ -43,4 +43,16 @@ const testMap = function(internalFunc, input, expected){
   testMap(square, [-1, -2], [1,4]);
 }
 
+/* ------- Test Reduce --------- */
 
+const testReduce = function(internalFunc, initial, input, expected){
+  let actual = reduce(internalFunc, initial, input);
+  generateLog({internalFunc, initial}, input, expected, actual);
+  assert.deepEqual(actual, expected);
+}
+
+{
+  let input = 1;
+  let initial = undefined;
+  testReduce(add5, initial, input, 6);
+}
