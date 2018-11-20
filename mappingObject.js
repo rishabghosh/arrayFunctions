@@ -1,3 +1,14 @@
+const extractValues = function(sourceObj){
+  let allKeys = Object.keys(sourceObj);
+  let allValues = [];
+
+  for(let index = 0; index < allKeys.length; index ++){
+    allValues.push(sourceObj[allKeys[index]]);
+  }
+  return allValues;
+}
+
+
 const objKeyMap = function(internalFunc, sourceObj){
   let result = {};
   let allKeys = Object.keys(sourceObj);
@@ -11,14 +22,11 @@ const objKeyMap = function(internalFunc, sourceObj){
 const objValueMap = function(internalFunc, sourceObj){
   let result = {};
   let allKeys = Object.keys(sourceObj);
-  let allValues = [];
+  let allValues = extractValues(sourceObj); 
+  let mappedValues = allValues.map(internalFunc);
 
   for(let index = 0; index < allKeys.length; index ++){
-    allValues.push(sourceObj[allKeys[index]]);
-  }
-  
-  for(let index = 0; index < allKeys.length; index ++){
-    result[allKeys[index]] = allValues.map(internalFunc)[index];
+    result[allKeys[index]] = mappedValues[index];
   }
   return result;
 }
