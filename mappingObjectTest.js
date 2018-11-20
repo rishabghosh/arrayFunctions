@@ -1,5 +1,6 @@
 const assertEq = require('assert').deepEqual;
-const {objKeyMap} = require('./mappingObject.js');
+const {objKeyMap,
+  objValueMap} = require('./mappingObject.js');
 
 const add5 = function(number){
   return number+5;
@@ -17,7 +18,7 @@ const add5 = function(number){
 }
 
 console.log("tests for objKeyMap passed");
-/*
+
 {
   sourceObj = {a:1};
   expectedOutput = {a:6};
@@ -25,4 +26,4 @@ console.log("tests for objKeyMap passed");
 }
 
 console.log("tests for objValueMap passed");
-*/
+
