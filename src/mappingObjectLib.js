@@ -6,7 +6,7 @@ const extractValues = function(sourceObj){
     allValues.push(sourceObj[allKeys[index]]);
   }
   return allValues;
-}
+};
 
 
 const objKeyMap = function(internalFunc, sourceObj){
@@ -17,7 +17,7 @@ const objKeyMap = function(internalFunc, sourceObj){
     result[mappedKeys[index]] = sourceObj[allKeys[index]];
   }
   return result;
-}
+};
 
 const objValueMap = function(internalFunc, sourceObj){
   let result = {};
@@ -29,7 +29,7 @@ const objValueMap = function(internalFunc, sourceObj){
     result[allKeys[index]] = mappedValues[index];
   }
   return result;
-}
+};
 
 exports.objKeyMap = objKeyMap;
 exports.objValueMap = objValueMap;

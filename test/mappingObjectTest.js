@@ -1,10 +1,10 @@
 const assertEq = require('assert').deepEqual;
 const {objKeyMap,
-  objValueMap} = require('./mappingObjectLib.js');
+  objValueMap} = require('../src/mappingObjectLib.js');
 
 const add5 = function(number){
   return number+5;
-}
+};
 
 /* ------ Generate Log ------- */
 
@@ -13,7 +13,7 @@ const generateLog = function(input, expected, actual){
   console.log("expected :\n", expected);
   console.log("actual :\n", actual);
   console.log("------------");
-}
+};
 
 /* ------ Test objKeyMap ------- */
 
@@ -21,7 +21,7 @@ const testObjKeyMap = function(internalFunc, sourceObj, expected){
   let actual = objKeyMap(internalFunc, sourceObj);
   generateLog({internalFunc,sourceObj}, expected, actual);
   assertEq(actual, expected);
-}
+};
 
 {
   testObjKeyMap(add5, {}, {});
@@ -36,7 +36,7 @@ const testObjValueMap = function(internalFunc, sourceObj, expected){
   let actual = objValueMap(internalFunc, sourceObj);
   generateLog({internalFunc,sourceObj}, expected, actual);
   assertEq(actual, expected);
-}
+};
 
 {
   testObjValueMap(add5, {}, {});

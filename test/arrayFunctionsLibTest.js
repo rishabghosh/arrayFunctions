@@ -2,23 +2,23 @@ const assert = require('assert');
 const {map,
   reduce} = require('../src/arrayFunctionsLib.js');
 
-/* -------- Internal Functions --------- */
+/* --------- Internal Functions --------- */
 
 const add5 = function(number){
   return number+5;
-}
+};
  
 const add = function(num1, num2){
   return num1+num2;
-}
+};
 
-const square = function(number){
+  const square = function(number){
   return number * number;
-}
+};
 
 const cube = function(number){
   return square(number) * number;
-}
+};
 
 /* -------- Testing Map Function -------- */
 

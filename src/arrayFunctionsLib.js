@@ -4,7 +4,7 @@ const map = function(internalFunc, sourceArray){
     result.push( internalFunc(sourceArray[index]) );
   }
   return result;
-}
+};
 
 const reduce = function(sourceArray, internalFunc, initial){
   let range = 0;
@@ -17,8 +17,7 @@ const reduce = function(sourceArray, internalFunc, initial){
     acc = internalFunc(acc, sourceArray[index]);
     }
   return acc;
-}
-
+};
 
 
 exports.map = map;
