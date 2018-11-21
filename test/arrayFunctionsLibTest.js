@@ -27,66 +27,30 @@ describe("Testing map():", function(){
   describe("With an empty array:", function(){
     it("should return an empty array", function(){
       assert.deepEqual( map(add5, []), []);
+      assert.deepEqual( map(square, []), []);
+      assert.deepEqual( map(cube, []), []);
     });
   });
 
   describe("with array of 1 element", function(){ 
     it("should preserve the length of array", function(){
       assert.deepEqual( map(add5, [1]), [6]);
-      assert.deepEqual( map(add5, [-5]), [0]);
-    });
-  });
-
-    it("an array having multiple numbers", function(){
-      assert.deepEqual( map(add5, [1,2,3]), [6,7,8]);
-    });
-
-    it("an empty array", function(){
-      assert.deepEqual( map(square, []), []);
-      console.log("\n   square() with:");
-      //logs title before execution of this it block
-    });
-
-    it("an array having zero", function(){
-      assert.deepEqual( map(square, [0]), [0]);
-    });
-
-    it("an array having one", function(){
-      assert.deepEqual( map(square, [1]), [1]);
-    });
-
-    it("an array having positive number:", function(){
-      assert.deepEqual( map(square, [2]), [4] );
-    });
-
-    it("an array having negetive number", function(){
-      assert.deepEqual( map(square, [-2]), [4] );
-    });
-
-    it("an array having multiple numbers", function(){
-      assert.deepEqual( map(square, [1,2,3,4,-1,-2,-3]), [1,4,9,16,1,4,9]);
-    });
-
-    it("an empty array", function(){
-      assert.deepEqual( map(cube, []), []);
-      console.log("\n   cube() with:");
-    });
-
-    it("an array having positive number", function(){
+      assert.deepEqual( map(square, [2]), [4]);
       assert.deepEqual( map(cube, [2]), [8]);
     });
-
-    it("an array having negetive number", function(){
-      assert.deepEqual( map(cube, [-2]), [-8]);
-    });
-
-    it("an array having multiple, numbers", function(){
-      assert.deepEqual( map(cube, [0,1,2,3]), [0,1,8,27]);
-    });
-
   });
 
-  /* ------- Testing Reduce Function --------- */
+  describe("with an array of multiple elements", function(){
+    it("should preserve the length of array", function(){
+      assert.deepEqual( map(add5, [1,2,3]), [6,7,8]);
+      assert.deepEqual( map(cube, [0,1,2,3]), [0,1,8,27]);
+      assert.deepEqual( map(square, [1,2,3,4,-1,-2,-3]), [1,4,9,16,1,4,9]);
+    });
+  });
+
+});
+
+/* ------- Testing Reduce Function --------- */
 
   describe("Testing reduce():", function(){
     it("an empty array & initial", function(){
