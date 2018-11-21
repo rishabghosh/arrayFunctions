@@ -1,6 +1,6 @@
 const assert = require('assert');
 const {map,
-  reduce} = require('./arrayFunctionsLib.js');
+  reduce} = require('../src/arrayFunctionsLib.js');
 
 /* -------- Internal Functions --------- */
 
@@ -16,43 +16,69 @@ const cube = function(number){
   return square(number) * number;
 }
 
-/* ------ Logging ------- */
+/* -------- Testing Map Function -------- */
 
-const generateLog = function(internalFunc, input, expected, actual){
-  console.log("Mapping", input);
-  console.log("With", internalFunc);
-  console.log("expected :\n", expected);
-  console.log("actual :\n", actual);
-  console.log("------------");
-}
+describe("Testing map:", function(){
 
-/* ------- Test Map ------- */
+  it("an empty array", function(){
+    assert.deepEqual( map(add5, []), []);
+    console.log("\n   Testing add5() with:");
+    //logs title before execution of this it block
+  });
 
-const testMap = function(internalFunc, input, expected){
-  let actual = map(internalFunc, input);
-  generateLog({internalFunc}, input, expected, actual);
-  assert.deepEqual(actual, expected);
-}
+  it("an array having positive number", function(){
+    assert.deepEqual( map(add5, [1]), [6]);
+  });
 
-{
-  testMap(add5, [0], [5]);
-  testMap(square, [0], [0]);
-  testMap(square, [2], [4]);
-  testMap(cube, [1,2,3], [1,8,27]);
-  testMap(cube, [-1, 0, -2], [-1, 0, -8]);
-  testMap(square, [-1, -2], [1,4]);
-}
+  it("an array having negetive number", function(){
+    assert.deepEqual( map(add5, [-5]), [0]);
+  });
 
-/* ------- Test Reduce --------- */
+  it("an array having multiple numbers", function(){
+    assert.deepEqual( map(add5, [1,2,3]), [6,7,8]);
+  });
+  
+  it("an empty array", function(){
+    assert.deepEqual( map(square, []), []);
+    console.log("\n   Testing square() with:");
+    //logs title before execution of this it block
+  });
 
-const testReduce = function(internalFunc, initial, input, expected){
-  let actual = reduce(internalFunc, initial, input);
-  generateLog({internalFunc, initial}, input, expected, actual);
-  assert.deepEqual(actual, expected);
-}
+  it("an array having zero", function(){
+    assert.deepEqual( map(square, [0]), [0]);
+  });
 
-{
-  let input = 1;
-  let initial = undefined;
-  testReduce(add5, initial, input, 6);
-}
+  it("an array having one", function(){
+    assert.deepEqual( map(square, [1]), [1]);
+  });
+
+  it("an array having positive number:", function(){
+    assert.deepEqual( map(square, [2]), [4] );
+  });
+
+  it("an array having negetive number", function(){
+    assert.deepEqual( map(square, [-2]), [4] );
+  });
+
+  it("an array having multiple numbers", function(){
+    assert.deepEqual( map(square, [1,2,3,4,-1,-2,-3]), [1,4,9,16,1,4,9]);
+  });
+
+  it("an empty array", function(){
+    assert.deepEqual( map(cube, []), []);
+    console.log("\n   Testing cube() with:");
+  });
+
+  it("an array having positive number", function(){
+    assert.deepEqual( map(cube, [2]), [8]);
+  });
+
+  it("an array having negetive number", function(){
+    assert.deepEqual( map(cube, [-2]), [-8]);
+  });
+
+  it("an array having multiple, numbers", function(){
+    assert.deepEqual( map(cube, [0,1,2,3]), [0,1,8,27]);
+  });
+  
+});
