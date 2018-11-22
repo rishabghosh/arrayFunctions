@@ -55,27 +55,37 @@ describe("Testing map():", function() {
 /* ------- Testing Reduce Function --------- */
 
 describe("Testing reduce():", function() {
-    it("an empty array & initial", function() {
-        assert.equal(reduce([], add, 5), 5);
-        console.log("\n   add() with:");
+
+    describe("With an empty array & initial", function() {
+        it("should return initial", function() {
+            assert.equal(reduce([], add, 5), 5);
+        });
     });
 
-    it("an array having number, no initial", function() {
-        assert.equal(reduce([5], add), 5);
+    describe("With an array of 1 element, no initial", function() {
+        it("should return that element", function() {
+            assert.equal(reduce([5], add), 5);
+        });
     });
 
-    it("an array having number & initial", function() {
-        assert.equal(reduce([10], add, 5), 15);
+    describe("With an array of 1 element & initial", function() {
+        it("should return reduced result", function() {
+            assert.equal(reduce([10], add, 5), 15);
+        });
     });
 
-    it("an array with multiple numbers, no initial", function() {
-        assert.equal(reduce([1, 2], add), 3);
-        assert.equal(reduce([1, 2, 3, 4, 5], add), 15);
+    describe("With an array of multiple elements, no initial", function() {
+        it("should return reduced result of all the elements", function() {
+            assert.equal(reduce([1, 2], add), 3);
+            assert.equal(reduce([1, 2, 3, 4, 5], add), 15);
+        });
     });
 
-    it("an array with multiple numbers & initial", function() {
-        assert.equal(reduce([1, 2], add, 5), 8);
-        assert.equal(reduce([1, 2, 3, 4, 5], add, 10), 25);
+    describe("With an array of multiple elements & initial", function() {
+        it("should return reduced result of all the elements", function() {
+            assert.equal(reduce([1, 2], add, 5), 8);
+            assert.equal(reduce([1, 2, 3, 4, 5], add, 10), 25);
+        });
     });
 
 });
