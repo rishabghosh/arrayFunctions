@@ -1,7 +1,8 @@
 const assert = require('assert');
 const {
     map,
-    reduce
+    reduce,
+    filter
 } = require('../src/arrayFunctionsLib.js');
 
 /* --------- Internal Functions --------- */
@@ -20,6 +21,12 @@ const square = function(number) {
 
 const cube = function(number) {
     return square(number) * number;
+};
+
+const makeConstant = (x)=>() => x;
+
+const isEven = function(number) {
+    return number % 2 == 0;
 };
 
 /* -------- Testing Map Function -------- */
@@ -85,6 +92,41 @@ describe("Testing reduce():", function() {
         it("should return reduced result of all the elements", function() {
             assert.equal(reduce([1, 2], add, 5), 8);
             assert.equal(reduce([1, 2, 3, 4, 5], add, 10), 25);
+        });
+    });
+
+});
+
+/* ------ Testing Filter Function ---------- */
+
+describe('Testing filter():', function() {
+
+    describe("With empty array", function() {
+        it('should return empty array', function() {
+            assert.deepEqual(filter(makeConstant(true), []), []);
+            assert.deepEqual(filter(isEven, []), []);
+        });
+    });
+
+    describe("With array of 1 truthy value", function() {
+        it('should return array of that value', function() {
+            assert.deepEqual(filter(makeConstant(true), [1]), [1]);
+            assert.deepEqual(filter(isEven, [2]), [2]);
+        });
+    });
+
+    describe("With array of 1 falesy value", function() {
+        it('should return empty array', function() {
+            assert.deepEqual(filter(makeConstant(false), [1]), []);
+            assert.deepEqual(filter(isEven, [1]), []);
+        });
+    });
+
+    describe("With multiple element array", function() {
+        it('should return array of elements fulfiling predicator', function() {
+            assert.deepEqual(filter(makeConstant(true), [2, 3, 5]), [2, 3, 5]);
+            assert.deepEqual(filter(isEven, [1, 2]), [2]);
+            assert.deepEqual(filter(isEven, [1, 2, 3, 4, 5, 6]), [2, 4, 6]);
         });
     });
 

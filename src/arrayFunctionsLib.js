@@ -19,6 +19,17 @@ const reduce = function(sourceArray, internalFunc, initial) {
     return acc;
 };
 
+// constructs a new array of all the values for which callback returns a truthy value
+const filter = function(internalFunc, sourceArray){
+  let result = [];
+  for(let index = 0; index < sourceArray.length; index ++){
+    if( internalFunc(sourceArray[index]) ){
+      result.push(sourceArray[index]);
+    }
+  }
+  return result;
+}
 
 exports.map = map;
 exports.reduce = reduce;
+exports.filter = filter;
