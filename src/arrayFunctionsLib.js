@@ -44,7 +44,7 @@ const recursiveReduce = function(sourceArray, reducer, accumulator) {
     let result = reducer(accumulator, sourceArray[index]);
     let remainingArray = sourceArray.slice(index + 1);
     return recursiveReduce(remainingArray, reducer, result);
-}
+};
 
 exports.recursiveReduce = recursiveReduce;
 exports.map = map;
