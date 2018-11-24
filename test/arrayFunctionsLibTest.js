@@ -2,7 +2,8 @@ const assert = require('assert');
 const {
     map,
     reduce,
-    filter
+    filter,
+    recursiveReduce
 } = require('../src/arrayFunctionsLib.js');
 
 /* --------- Internal Functions --------- */
@@ -23,7 +24,7 @@ const cube = function(number) {
     return square(number) * number;
 };
 
-const makeConstant = (x)=>() => x;
+const makeConstant = (x) => () => x;
 
 const isEven = function(number) {
     return number % 2 == 0;
@@ -31,7 +32,7 @@ const isEven = function(number) {
 
 /* -------- Testing Map Function -------- */
 
-describe("Testing map():", function() {
+describe("Testing map():\n", function() {
 
     describe("With an empty array:", function() {
         it("should return an empty array", function() {
@@ -61,7 +62,7 @@ describe("Testing map():", function() {
 
 /* ------- Testing Reduce Function --------- */
 
-describe("Testing reduce():", function() {
+describe("\n  Testing reduce():\n", function() {
 
     describe("With an empty array & initial", function() {
         it("should return initial", function() {
@@ -99,7 +100,7 @@ describe("Testing reduce():", function() {
 
 /* ------ Testing Filter Function ---------- */
 
-describe('Testing filter():', function() {
+describe('\n  Testing filter():\n', function() {
 
     describe("With empty array", function() {
         it('should return empty array', function() {
@@ -127,6 +128,45 @@ describe('Testing filter():', function() {
             assert.deepEqual(filter(makeConstant(true), [2, 3, 5]), [2, 3, 5]);
             assert.deepEqual(filter(isEven, [1, 2]), [2]);
             assert.deepEqual(filter(isEven, [1, 2, 3, 4, 5, 6]), [2, 4, 6]);
+        });
+    });
+
+});
+
+
+/* ------ Testing recursiveReduce Function -------- */
+
+describe("\n  Testing recursiveReduce():\n", function() {
+
+    describe("With an empty array & initial", function() {
+        it("should return initial", function() {
+            assert.equal(recursiveReduce([], add, 5), 5);
+        });
+    });
+
+    describe("With an array of 1 element, no initial", function() {
+        it("should return that element", function() {
+            assert.equal(recursiveReduce([5], add), 5);
+        });
+    });
+
+    describe("With an array of 1 element & initial", function() {
+        it("should return reduced result", function() {
+            assert.equal(recursiveReduce([10], add, 5), 15);
+        });
+    });
+
+    describe("With an array of multiple elements, no initial", function() {
+        it("should return reduced result of all the elements", function() {
+            assert.equal(recursiveReduce([1, 2], add), 3);
+            assert.equal(recursiveReduce([1, 2, 3, 4, 5], add), 15);
+        });
+    });
+
+    describe("With an array of multiple elements & initial", function() {
+        it("should return reduced result of all the elements", function() {
+            assert.equal(recursiveReduce([1, 2], add, 5), 8);
+            assert.equal(recursiveReduce([1, 2, 3, 4, 5], add, 10), 25);
         });
     });
 
